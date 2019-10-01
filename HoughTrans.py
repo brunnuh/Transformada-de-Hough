@@ -1,5 +1,8 @@
 import cv2
 import numpy as np
+from Converters import *
+
+
 
 class HoughTrans:
     def __init__(self, img, rmin, rmax): # passar parametros
@@ -9,13 +12,18 @@ class HoughTrans:
         self.rmax = rmax
         self.width = img.shape[0]
         self.height = img.shape[1]
+        self.point = []
         #self.__acumalador = np.empty(shape=[img.shape[0], img.shape[1], (self.rmax - self.rmin)])  # aloca uma matriz [][][]
         self.Hough(img, rmin, rmax)
 
+
+
     def Hough(self, img, rmin, rmax):
         self.__allocateAcumulador(self.height, self.width)  # criando acumulaador apartir da altura e largura
+        self.point = Converters.BufferedImageToPoint(self, img, 0)
 
-    def __allocateAcumulador(self, lmax, cmax):
+
+    def __allocateAcumulador(self, lmax, cmax): # cria um acumulador
         try:
             #print('alocando...')
             self.__acumalador = np.empty(shape=[lmax, cmax, (self.rmax - self.rmin)])  # aloca uma matriz [][][],
