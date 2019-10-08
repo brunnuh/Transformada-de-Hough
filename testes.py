@@ -4,7 +4,7 @@ import numpy as np
 #sorted - ordena lista
 
 
-img = cv2.imread("C:/Users/Brunno Santos/Downloads/HOUGH/4Pixel.png")
+#img = cv2.imread("C:/Users/Brunno Santos/Downloads/HOUGH/4Pixel.png")
 '''x_y = []
 pontos = []
 x_y.append('2')
@@ -16,34 +16,8 @@ x_y.append('382')
 pontos.append(x_y.copy())
 print(pontos)'''
 
-'''ponts = [1 , 2]
+matriz = np.array(((5,2,-1),(3,12,-4),(5,52,6,9)))
 
-cir = []
-cir.append(ponts.copy())
-ponts[0] = 4
-ponts[1] = 3
-cir.append(ponts.copy())
-ponts[0] = 5
-ponts[1] = 7
-cir.append(ponts.copy())
-print(cir)'''
-
-
-
-matriz = [[1, 2, 3], [654, 323, 531], [3432, 434, 456]]
-min = 100000000
-index = 0
-
-for lin in range(0, len(matriz)):
-    if (min > matriz[lin][2]):
-        min = matriz[lin][2]
-        index = lin
-
-print(index)
-
-
-
-
-
-
-'''max([valor for linha in matriz for valor in linha])'''
+'''valor = min(valor for linha in matriz for valor in linha)
+index = matriz[][:].index(valor)'''
+print(np.argmin(matriz[:][1]))#np.argmin(self.coord_center[:,3])
