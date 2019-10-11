@@ -111,8 +111,6 @@ class HoughTransform:
 
 
 
-        #Index_Min?
 
-    #localizaLimbo?
-    #ordenaHough?
+  
 
