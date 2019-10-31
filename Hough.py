@@ -62,6 +62,8 @@ class HoughTransform:
         #implementar restricoes
         h_x=0
         h_y=0
+        values = list()
+        dtype = [('lin', int), ('col', int), ('raio', int), ('acc', float)]
 
         for delta_raio in range(0, (self.rmax-self.rmin)):
             self.circulo = self.getCirculo(self.rmin + delta_raio)
@@ -73,7 +75,24 @@ class HoughTransform:
                         self.accumulator[h_x][h_y][delta_raio] += 1
 
         self.accumulator=self.accumulator/255
-        self.getPeak(qtd)
+
+        for r in range(0, (self.rmax-self.rmin)):
+            for x in range(0, self.width):
+                for y in range(0, self.height):
+                    try:
+                        values.append((x,y,r,self.accumulator[x][y][r]))
+                    except:
+                        print("erro")
+        coord = np.array(values, dtype=dtype)
+        coord=np.sort(coord, order='acc')
+        print(coord[len(coord)-10:])
+        cv2.circle(self.img, (self.width,self.height), 0, (0, 255, 0), 1)
+        cv2.imshow("imagem", self.img)
+        cv2.waitKey(0)
+        #self.getPeak(coord)
+        #return coord
+
+
 
     def getPeak(self, qtd):
         self.coord_center=np.zeros([qtd, 4])
